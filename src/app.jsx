@@ -1,26 +1,28 @@
 import React from 'react';
-import { SketchPicker } from 'react-color';
-import {pushColor} from './api/fetchWorker';
+import LedController from './views/led_controller/led_controller';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 
-import './app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
-    state = {
-      background: {a: 1, b: 196, g: 8, r: 39},
-    };
-  
-    handleChangeComplete = (color, event) => {
-      this.setState({ background: color.rgb }, () => {
-        pushColor(color.rgb);
-      });
-    };
-  
     render() {
-      return <SketchPicker
-        color={this.state.background}
-        onChangeComplete={this.handleChangeComplete}
-        disableAlpha={true}
-       />;
+      return <>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <Navbar.Brand href="#home">Smart Home Controller</Navbar.Brand>
+              <Nav className="me-auto">
+              </Nav>
+              <Nav className="">
+                <Nav.Link active href="#home">Led Controller</Nav.Link>
+              </Nav>
+            </Container>
+          </Navbar>
+          <Container>
+            <LedController/>
+          </Container>
+      </>
     }
   }
 
